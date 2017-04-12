@@ -1,0 +1,5 @@
+#!/bin/snck
+set PATH /home/fboucher/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+set EDITOR vim
+set MANPAGER manpager
+set _SNCKRC +${_SNCKRC}

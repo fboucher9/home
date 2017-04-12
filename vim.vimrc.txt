@@ -1,0 +1,46 @@
+set nocompatible
+set nobackup
+set noswapfile
+set expandtab
+set shiftwidth=4
+set shiftround
+set softtabstop=4
+set nowrap
+set hlsearch
+set incsearch
+set ignorecase
+set nostartofline
+set backspace=indent,eol,start
+set history=500
+set noerrorbells
+set visualbell
+set t_vb=
+set autoindent
+set smartindent
+set cindent
+set cinoptions=c0,C1,(1s,U1,t0
+set laststatus=1
+set completeopt=
+set helplang=En
+set foldmethod=manual
+set foldmarker={,}
+set foldmethod=marker
+set foldlevel=99
+set nofoldenable
+set hidden
+set showtabline=0
+set list
+set listchars=tab:>-,trail:.
+set diffopt=filler,foldcolumn:0,vertical
+set fillchars=stlnc:_,stl:_,vert:\|,fold:.,diff:.
+set shortmess=atToOsI
+set guicursor=n-v-c:block,o:hor50,i-ci:hor5,r-cr:hor30,sm:block
+set shell=sh
+colorscheme felixblack
+nnoremap ; :
+nnoremap , ;
+inoremap <C-@> <space>
+filetype plugin indent on
+if (0 == argc())
+    setlocal buftype=nofile
+endif

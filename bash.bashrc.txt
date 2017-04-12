@@ -1,0 +1,25 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+umask 022
+
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+shopt -s histappend
+shopt -s checkwinsize
+shopt -s autocd
+shopt -s cdspell
+
+alias grep='grep --color=auto'
+
+. /usr/share/bash-completion/bash_completion
+
+export EDITOR=vim
+export PS1='\u@ubuntu:\w\$ '
+export PATH=${HOME}/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
