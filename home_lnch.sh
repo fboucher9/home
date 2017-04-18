@@ -9,9 +9,14 @@
 #       Startup script for lnch window manager.
 #
 
+# Select destination folder of installation
+if [ -z "${DESTDIR}" ]; then
+    DESTDIR=${HOME}
+fi
+
 # Make a backup of existing script
-if [ -f ~/.lnchrc ]; then
-    cp ~/.lnchrc ~/.lnchrc.bak
+if [ -f "${DESTDIR}"/.lnchrc ]; then
+    cp "${DESTDIR}"/.lnchrc "${DESTDIR}"/.lnchrc.bak
 fi
 
 #
@@ -32,7 +37,7 @@ function generate-script ()
     echo 'source ${HOME}/.snckrc'
 
     # Set wallpaper
-    echo '/usr/bin/dsrt -f ${HOME}/.dsrt.jpg'
+    echo '${HOME}/.dsrtrc'
 
     # Change directory to home folder
     echo 'cd ${HOME}'
@@ -43,9 +48,9 @@ function generate-script ()
 }
 
 # Create script in home folder
-generate-script > ~/.lnchrc
+generate-script > "${DESTDIR}"/.lnchrc
 
 # Make the script executable
-chmod +x ~/.lnchrc
+chmod +x "${DESTDIR}"/.lnchrc
 
 # end-of-file: ~/.lnchrc

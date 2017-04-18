@@ -14,9 +14,14 @@
 #       is used as filename of vim quickfix list.
 #
 
+# Select destination folder of installation
+if [ -z "${DESTDIR}" ]; then
+    DESTDIR=${HOME}
+fi
+
 # Make sure bin folder has been created
-if [ ! -d ~/bin ]; then
-    mkdir ~/bin
+if [ ! -d "${DESTDIR}"/bin ]; then
+    mkdir "${DESTDIR}"/bin
 fi
 
 (
@@ -32,9 +37,9 @@ echo 'exec vim -q <( \
         --exclude='\''_obj*'\'' \
         "${@}" \
         . )'
-) > ~/bin/g
+) > "${DESTDIR}"/bin/g
 
 # Make the script executable
-chmod +x ~/bin/g
+chmod +x "${DESTDIR}"/bin/g
 
 # end-of-file: ~/bin/g

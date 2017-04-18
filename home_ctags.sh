@@ -9,9 +9,14 @@
 #       Configuration of ctags utility.
 #
 
+# Select destination folder of installation
+if [ -z "${DESTDIR}" ]; then
+    DESTDIR=${HOME}
+fi
+
 # Do backup of existing file
-if [ -f ~/.ctags ]; then
-    cp ~/.ctags ~/.ctags.bak
+if [ -f "${DESTDIR}"/.ctags ]; then
+    cp "${DESTDIR}"/.ctags "${DESTDIR}"/.ctags.bak
 fi
 
 #
@@ -37,6 +42,6 @@ function generate-file ()
 }
 
 # Create the file in the home folder
-generate-file > ~/.ctags
+generate-file > "${DESTDIR}"/.ctags
 
 # end-of-file: ~/.ctags

@@ -20,18 +20,23 @@
 #           set EDITOR vim
 #
 
+# Select destination folder of installation
+if [ -z "${DESTDIR}" ]; then
+    DESTDIR=${HOME}
+fi
+
 # Make sure bin folder has been created
-if [ ! -d ~/bin ]; then
-    mkdir ~/bin
+if [ ! -d "${DESTDIR}"/bin ]; then
+    mkdir "${DESTDIR}"/bin
 fi
 
 # Create the script in the bin folder
 (
 echo '#!/bin/bash'
 echo 'x-terminal-emulator -e ${EDITOR} "${@}" 1>/dev/null 2>/dev/null </dev/null & disown'
-) > ~/bin/gvim
+) > "${DESTDIR}"/bin/gvim
 
 # Make the script executable
-chmod +x ~/bin/g
+chmod +x "${DESTDIR}"/bin/g
 
 # end-of-file: ~/bin/gvim

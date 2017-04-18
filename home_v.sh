@@ -12,18 +12,23 @@
 #     - This is equivalent of 'alias v=vim'
 #
 
+# Select destination folder of installation
+if [ -z "${DESTDIR}" ]; then
+    DESTDIR=${HOME}
+fi
+
 # Make sure bin folder has been created
-if [ ! -d ~/bin ]; then
-    mkdir ~/bin
+if [ ! -d "${DESTDIR}"/bin ]; then
+    mkdir "${DESTDIR}"/bin
 fi
 
 # Create the script in the bin folder
 (
 echo '#!/bin/bash'
 echo 'exec ${EDITOR} "${@}"'
-) > ~/bin/v
+) > "${DESTDIR}"/bin/v
 
 # Make the script executable
-chmod +x ~/bin/v
+chmod +x "${DESTDIR}"/bin/v
 
 # end-of-file: ~/bin/v

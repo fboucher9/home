@@ -9,6 +9,17 @@
 #       Configuration of elinks web browser.
 #
 
+# Select destination folder of installation
+if [ -z "${DESTDIR}" ]; then
+    DESTDIR=${HOME}
+fi
+
+# Make sure destination folder is created
+if [ ! -d "${DESTDIR}"/.elinks ]; then
+    mkdir "${DESTDIR}"/.elinks
+fi
+
+# Create file in .elinks folder
 (
     echo 'set config.saving_style_w = 1'
     echo 'set document.browse.images.show_as_links = 0'
@@ -26,6 +37,6 @@
     echo 'set ui.show_status_bar = 0'
     echo 'set ui.show_title_bar = 0'
     echo 'set ui.tabs.show_bar = 1'
-) > ~/.elinks/elinks.conf
+) > "${DESTDIR}"/.elinks/elinks.conf
 
 # end-of-file: ~/.elinks/elinks.conf
