@@ -1,0 +1,262 @@
+" See LICENSE for license details
+
+" Module: ~/.vimrc
+"
+" Description:
+"   vim main configuration file
+"
+
+" --- Generic options ---
+
+" Enable vim specific and vi non-compatible features
+set nocompatible
+
+" Disable the automatic backup file, use git instead
+set nobackup
+
+" Disable the automatic swap file, use git instead
+set noswapfile
+
+" Replace spaces with tabs
+set expandtab
+
+" Use 4 spaces for indentation
+set shiftwidth=4
+
+" Align to multiple of 4 spaces
+set shiftround
+
+" Use 4 spaces for indentation
+set softtabstop=4
+
+" Physical tab is 8 spaces
+" set tabstop=8
+
+" Disable the virtual edit feature, use A to append after line
+" set virtualedit=
+
+" Disable the line numbers
+" set nonumber
+
+" Disable the wrap of long lines, use zL and zH to scroll horizontally
+set nowrap
+
+" Highligh results of search
+set hlsearch
+
+" Jump to result of search while typing
+set incsearch
+
+" Ignore case during search
+set ignorecase
+
+" Ignore case only when search contains only lower case
+" set smartcase
+
+" Avoid moving cursor to start of line
+set nostartofline
+
+" Disable the 'wild' menu
+" set nowildmenu
+
+" Configuration of completion from command line mode
+" set wildmode=longest,list:longest
+
+" Less flashing while executing macros
+set lazyredraw
+
+" Use alt/meta key for mappings instead of menus
+set winaltkeys=no
+
+" Backspace over everything
+set backspace=indent,eol,start
+
+" Increase history buffer length
+set history=500
+
+" Display of cursor position in status bar
+set noruler
+
+" Display of incomplete commands in status bar
+" set showcmd
+
+" Display current mode in status bar
+" set showmode
+
+" Hide status bar when only one window
+set laststatus=1
+
+" Disable bell
+set noerrorbells
+
+" Disable bell
+set visualbell
+
+" Disable bell
+set t_vb=
+
+" Enable indent features
+set autoindent
+
+" Enable indent features
+set smartindent
+
+" Enable indent features
+set cindent
+
+" Enable indent features
+set cinoptions=c0,C1,(1s,U1,t0
+
+" Disable the completion popup menu
+set completeopt=
+
+" Configure default language of help
+set helplang=En
+
+" Restore the screen on exit or when executing external commands
+set restorescreen
+
+" Use built-in diff
+" set diffexpr=
+
+" Configure C/C++ style folds
+set foldmethod=manual
+
+" Configure C/C++ style folds
+set foldmarker={,}
+
+" Configure C/C++ style folds
+set foldmethod=marker
+
+" Configure C/C++ style folds
+set foldlevel=99
+
+" Configure C/C++ style folds
+set nofoldenable
+
+" Keep buffers that are not visible in a window
+set hidden
+
+" Disable the tab line
+set showtabline=0
+
+" Highlight of cursor line
+" set nocursorline
+
+" Highlight of cursor column
+" set nocursorcolumn
+
+" Disable jump to matching brace
+" set noshowmatch
+
+" Timeout for key sequences
+" set timeout
+
+" Timeout for key sequences
+set ttimeoutlen=100
+
+" Configuration of mouse and select mode
+" behave xterm
+
+" Configuration of mouse and select mode
+" set mouse=
+" set mouse=a
+
+" Configuration of mouse and select mode
+" set selectmode=key
+
+" Configuration of mouse and select mode
+" set keymodel=startsel
+
+" Display special characters like tab and trailing space
+set list
+
+" Use spaces but with a special highlighting
+set listchars=tab:\ \ ,trail:\ 
+
+" Setup English Dictionary
+set dictionary=~/.vim/dict/web2
+
+" include paths...
+set path=.,/usr/local/include,/usr/include
+
+
+" Configuration of diff mode
+" Fill empty lines with a 'fill' character, do not show the fold column
+set diffopt=filler,foldcolumn:0,vertical
+" set fillchars=stlnc:_,stl:_,vert:\|,fold:.,diff:.
+exec "set fillchars=stlnc:\u2015,stl:\u2015,vert:\u2502,fold:\\ ,diff:\\ "
+
+" Do not display introduction when opening no files
+set shortmess=atToOsI
+
+" setup cursor shape for insert mode:
+set guicursor=n-v-c:block,o:hor50,i-ci:hor5,r-cr:hor30,sm:block
+
+" Override the default shell
+set shell=sh
+
+" Setup grepprg
+if executable('ag')
+    if executable('ag_vim')
+        set grepprg=ag_vim
+    else
+        set grepprg=ag\ -i\ --nogroup\ --column\ $*
+    endif
+else
+    set grepprg=grep\ -n\ -i\ -r\ --exclude-dir=.git\ --exclude=tags\ --exclude=_obj*\ $*\ .
+endif
+
+" Configuration of netrw plugin
+let g:netrw_banner=0
+
+" Custom color scheme
+colorscheme feed
+
+" Swap colon and semi-colon
+nnoremap ; :
+
+" Swap command and semi-colon
+nnoremap , ;
+
+" Accept both backslash and space as <Leader>
+nmap \ <space>
+
+" Space is the new <Leader>
+let g:mapleader=" "
+
+" Disable the ctrl-space key
+inoremap <c-@> <space>
+
+" Use of <j> <k> key sequence to exit insert mode
+inoremap jk <esc>
+
+" Enable filetype specific plugins and indent options
+filetype plugin indent on
+
+" Create autocmd group for home folder
+augroup FeedHome
+augroup end
+
+" remove automatic comments
+au FeedHome FileType * setlocal fo-=croql
+
+" Quick grep
+nnoremap <Leader>s :silent! grep -w '<c-r><c-w>'<left>
+
+" Quick exit all windows and buffers
+nnoremap <Leader>q :qa<CR>
+
+" Quick edit of current file name
+nnoremap <Leader>e :edit <C-r>%
+
+" Setup cursor shape feature for xterm console
+if &term =~ '^xterm' || &term =~ '^st'
+    let &t_SI="\<Esc>[4 q"
+    let &t_EI="\<Esc>[2 q"
+endif
+
+" Use scratch buffer when no file is provided on command line
+if (0 == argc())
+    setlocal buftype=nofile
+endif

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# See LICENSE for license details
+
+#
+# Module: ~/bin/manpager
+#
+# Description:
+#       Custom pager for man command.
+#
+
+# Make sure bin folder has been created
+if [ ! -d ~/bin ]; then
+    mkdir ~/bin
+fi
+
+# Create the script in the bin folder
+(
+echo '#!/bin/bash'
+echo 'col -b -x | exec vim +"setf man" -'
+) > ~/bin/manpager
+
+# Make the script executable
+chmod +x ~/bin/manpager
+
+# end-of-file: ~/bin/manpager

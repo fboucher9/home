@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# See LICENSE for license details
+
+#
+# Module: ~/bin/g
+#
+# Description:
+#       Recursive grep and view results using vim quickfix list.
+#
+# Comments:
+#     - Use of bash special input redirection operator.  Output of
+#       grep is redirected to a temporary buffer and the same buffer
+#       is used as filename of vim quickfix list.
+#
+
+# Make sure bin folder has been created
+if [ ! -d ~/bin ]; then
+    mkdir ~/bin
+fi
+
+(
+echo '#!/bin/bash'
+echo 'exec vim -q <( \
+    grep \
+        -n \
+        -r \
+        -i \
+        --exclude-dir='\''.git'\'' \
+        --exclude=tags \
+        --exclude='\''*.o'\'' \
+        --exclude='\''_obj*'\'' \
+        "${@}" \
+        . )'
+) > ~/bin/g
+
+# Make the script executable
+chmod +x ~/bin/g
+
+# end-of-file: ~/bin/g

@@ -1,18 +1,15 @@
-"   Module: felixblack.vim
+"   Module: feed.vim
 "
 "   Description:
-"       Color scheme for Felix
+"       Color scheme for feed
 "
-"   Author:
-"       Felix Boucher
-"       fboucher@matrox.com
 
 set background=dark
 hi clear
 if exists("syntax_on")
     syntax reset
 endif
-let g:colors_name = "felixblack"
+let g:colors_name = "feed"
 
 "   Function: do_highlight_list { {
 "
@@ -68,17 +65,15 @@ endfun "} }
 
 " Apply my highlight settings
 call s:do_highlight_list([
-    \ [['Normal', 'NonText', 'Special', 'Identifier', 'ModeMsg', 'CursorLineNr', 'Ignore'],
+    \ [['Normal', 'NonText', 'Special', 'Identifier', 'ModeMsg', 'CursorLineNr', 'Ignore', 'MatchParen'],
     \  ['LightGray', 'Black', '#c8c8c8', '#000000']],
     \ [['StatusLine'],
     \  ['LightGray', 'Black', '#c8c8c8', '#000000']],
-    \ [['Statement', 'Comment', 'Type', 'StatusLineNC', 'VertSplit', 'DiffDelete', 'LineNr', 'Folded', 'FoldColumn', 'SignColumn'],
+    \ [['Statement', 'Comment', 'Type', 'StatusLineNC', 'VertSplit', 'LineNr', 'Folded', 'FoldColumn', 'SignColumn'],
     \  ['DarkGray', 'Black', '#909090', '#000000']],
     \ [['Preproc', 'WildMenu', 'Directory', 'WarningMsg', 'ErrorMsg'],
     \  ['DarkCyan', 'Black', 'DarkCyan', '#000000']],
-    \ [['DiffText'],
-    \  ['LightGreen', 'Black', 'LightGreen', '#000000']],
-    \ [['DiffAdd', 'DiffChange', 'diffAdded', 'SpellCap', 'SpellRare', 'SpellBad', 'SpellLocal', 'Todo', 'Title', 'MoreMsg', 'Question'],
+    \ [['diffAdded', 'SpellCap', 'SpellRare', 'SpellBad', 'SpellLocal', 'Todo', 'Title', 'MoreMsg', 'Question'],
     \  ['DarkGreen', 'Black', 'DarkGreen', '#000000']],
     \ [['Constant', 'diffRemoved'],
     \  ['Brown', 'Black', '#af5f00', '#000000']],
@@ -89,8 +84,14 @@ call s:do_highlight_list([
     \ [['Error'],
     \  ['DarkMagenta', 'Black', 'DarkMagenta', '#000000']],
     \ [['CursorLine', 'CursorColumn', 'ColorColumn'],
-    \  ['NONE', 'DarkRed', 'NONE', 'DarkRed']],
+    \  ['NONE', '235', 'NONE', '235']],
+    \ [['DiffDelete'],
+    \  ['NONE', '233', 'NONE', '233']],
+    \ [['DiffAdd', 'DiffChange'],
+    \  ['NONE', '233', 'NONE', '233']],
+    \ [['DiffText'],
+    \  ['NONE', '235', 'NONE', '235']],
     \ [['SpecialKey'],
-    \  ['LightBlue', 'Black', 'LightBlue', '#000000']]
+    \  ['LightBlue', '235', 'LightBlue', '235']]
     \ ])
 

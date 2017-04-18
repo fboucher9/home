@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# See LICENSE for license details
+
+#
+# Module: ~/bin/_
+#
+# Description:
+#       Launch an application in the background
+#
+# Comments:
+#       All inputs and outputs are redirected to null device.
+#
+
+# Make sure bin folder has been created
+if [ ! -d ~/bin ]; then
+    mkdir ~/bin
+fi
+
+# Create the script in the bin folder
+(
+    echo '#!/bin/bash'
+    echo '"${@}" 1>/dev/null 2>/dev/null </dev/null & disown'
+) > ~/bin/_
+
+# Make the script executable
+chmod +x ~/bin/_
+
+# end-of-file: ~/bin/_

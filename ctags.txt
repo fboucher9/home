@@ -1,4 +1,0 @@
--R
--N
---extra=+fq
---c++-kinds=+lpx
