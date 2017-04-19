@@ -3,10 +3,10 @@
 # See LICENSE for license details
 
 #
-# Module: ~/bin/_
+# Module: home_bg.sh
 #
 # Description:
-#       Launch an application in the background
+#       Install ~/bin/_ which launches an application in the background
 #
 # Comments:
 #       All inputs and outputs are redirected to null device.
@@ -18,22 +18,22 @@ if [ -z "${DESTDIR}" ]; then
 fi
 
 # Make sure bin folder has been created
-if [ ! -d "${DESTDIR}"/bin ]; then
-    mkdir "${DESTDIR}"/bin
+if [ ! -d "${DESTDIR}/bin" ]; then
+    mkdir -p "${DESTDIR}/bin"
 fi
 
 # Backup of existing file
-if [ -f "${DESTDIR}"/bin/_ ]; then
-    cp "${DESTDIR}"/bin/_ "${DESTDIR}"/bin/_.bak
+if [ -f "${DESTDIR}/bin/_" ]; then
+    cp "${DESTDIR}/bin/_" "${DESTDIR}/bin/_.bak"
 fi
 
 # Create the script in the bin folder
 (
     echo '#!/bin/bash'
     echo '"${@}" 1>/dev/null 2>/dev/null </dev/null & disown'
-) > "${DESTDIR}"/bin/_
+) > "${DESTDIR}/bin/_"
 
 # Make the script executable
-chmod +x "${DESTDIR}"/bin/_
+chmod +x "${DESTDIR}/bin/_"
 
-# end-of-file: ~/bin/_
+# end-of-file: home_bg.sh

@@ -8,6 +8,7 @@
 #
 
 HOME_FEATURES := \
+    home_bashrc \
     home_bg \
     home_ctags \
     home_dsrt \
@@ -25,6 +26,12 @@ HOME_FEATURES := \
 
 .PHONY: all
 all: $(HOME_FEATURES)
+
+.PHONY: home_bashrc
+home_bashrc: $(HOME_DST)/.bashrc
+
+$(HOME_DST)/.bashrc: $(HOME_SRC)/home_bashrc.sh
+	env DESTDIR=$(HOME_DST) bash home_bashrc.sh
 
 .PHONY: home_bg
 home_bg: $(HOME_DST)/bin/_

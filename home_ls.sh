@@ -3,7 +3,7 @@
 # See LICENSE for license details
 
 #
-# Module: ~/bin/ls
+# Module: home_ls.sh
 #
 # Description:
 #       Customized version of 'ls' command.
@@ -24,8 +24,8 @@ if [ -z "${DESTDIR}" ]; then
 fi
 
 # Make sure bin folder has been created
-if [ ! -d "${DESTDIR}"/bin ]; then
-    mkdir "${DESTDIR}"/bin
+if [ ! -d "${DESTDIR}/bin" ]; then
+    mkdir -p "${DESTDIR}/bin"
 fi
 
 # Create the script in the bin folder
@@ -36,9 +36,9 @@ fi
     echo '    --color=auto \'
     echo '    --group-directories-first \'
     echo '"${@}"'
-) > "${DESTDIR}"/bin/ls
+) > "${DESTDIR}/bin/ls"
 
 # Make the script executable
-chmod +x "${DESTDIR}"/bin/ls
+chmod +x "${DESTDIR}/bin/ls"
 
-# end-of-file: ~/bin/ls
+# end-of-file: home_ls.sh

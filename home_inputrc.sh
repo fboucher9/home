@@ -3,7 +3,7 @@
 # See LICENSE for license details
 
 #
-# Module: ~/.inputrc
+# Module: home_inputrc.sh
 #
 # Description:
 #       Configuration of readline library.
@@ -14,9 +14,14 @@ if [ -z "${DESTDIR}" ]; then
     DESTDIR=${HOME}
 fi
 
+# Make sure destination folder has been created
+if [ ! -d "${DESTDIR}" ]; then
+    mkdir -p "${DESTDIR}"
+fi
+
 # Do backup of existing file
-if [ -f "${DESTDIR}"/.inputrc ]; then
-    cp "${DESTDIR}"/.inputrc "${DESTDIR}"/.inputrc.bak
+if [ -f "${DESTDIR}/.inputrc" ]; then
+    cp "${DESTDIR}/.inputrc" "${DESTDIR}/.inputrc.bak"
 fi
 
 #
@@ -31,6 +36,6 @@ function generate-file ()
 }
 
 # Create the file in the home folder
-generate-file > "${DESTDIR}"/.inputrc
+generate-file > "${DESTDIR}/.inputrc"
 
-# end-of-file: ~/.inputrc
+# end-of-file: home_inputrc.sh

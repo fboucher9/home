@@ -3,7 +3,7 @@
 # See LICENSE for license details
 
 #
-# Module: ~/bin/gvim
+# Module: home_gvim.sh
 #
 # Description:
 #       Launch a terminal window with vim
@@ -26,8 +26,13 @@ if [ -z "${DESTDIR}" ]; then
 fi
 
 # Make sure bin folder has been created
-if [ ! -d "${DESTDIR}"/bin ]; then
-    mkdir "${DESTDIR}"/bin
+if [ ! -d "${DESTDIR}/bin" ]; then
+    mkdir -p "${DESTDIR}/bin"
+fi
+
+# Backup of existing file
+if [ -f "${DESTDIR}/bin/gvim" ]; then
+    cp "${DESTDIR}/bin/gvim" "${DESTDIR}/bin/gvim.bak"
 fi
 
 # Create the script in the bin folder
@@ -37,6 +42,6 @@ echo 'x-terminal-emulator -e ${EDITOR} "${@}" 1>/dev/null 2>/dev/null </dev/null
 ) > "${DESTDIR}"/bin/gvim
 
 # Make the script executable
-chmod +x "${DESTDIR}"/bin/g
+chmod +x "${DESTDIR}"/bin/gvim
 
-# end-of-file: ~/bin/gvim
+# end-of-file: home_gvim.sh

@@ -3,7 +3,7 @@
 # See LICENSE for license details
 
 #
-# Module: ~/.ctags
+# Module: home_ctags.sh
 #
 # Description:
 #       Configuration of ctags utility.
@@ -14,9 +14,14 @@ if [ -z "${DESTDIR}" ]; then
     DESTDIR=${HOME}
 fi
 
+# Make sure destination folder has been created
+if [ ! -d "${DESTDIR}" ]; then
+    mkdir -p "${DESTDIR}"
+fi
+
 # Do backup of existing file
-if [ -f "${DESTDIR}"/.ctags ]; then
-    cp "${DESTDIR}"/.ctags "${DESTDIR}"/.ctags.bak
+if [ -f "${DESTDIR}/.ctags" ]; then
+    cp "${DESTDIR}/.ctags" "${DESTDIR}/.ctags.bak"
 fi
 
 #
@@ -42,6 +47,6 @@ function generate-file ()
 }
 
 # Create the file in the home folder
-generate-file > "${DESTDIR}"/.ctags
+generate-file > "${DESTDIR}/.ctags"
 
-# end-of-file: ~/.ctags
+# end-of-file: home_ctags.sh

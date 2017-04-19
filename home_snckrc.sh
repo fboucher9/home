@@ -3,7 +3,7 @@
 # See LICENSE for license details
 
 #
-# Module: ~/.snckrc
+# Module: home_snckrc.sh
 #
 # Description:
 #       Login script for snck shell.
@@ -14,9 +14,14 @@ if [ -z "${DESTDIR}" ]; then
     DESTDIR=${HOME}
 fi
 
+# Make sure destination folder has been created
+if [ ! -d "${DESTDIR}" ]; then
+    mkdir -p "${DESTDIR}"
+fi
+
 # Backup existing file
-if [ -f "${DESTDIR}"/.snckrc ]; then
-    cp "${DESTDIR}"/.snckrc "${DESTDIR}"/.snckrc.bak
+if [ -f "${DESTDIR}/.snckrc" ]; then
+    cp "${DESTDIR}/.snckrc" "${DESTDIR}/.snckrc.bak"
 fi
 
 #
@@ -35,6 +40,6 @@ function generate-file ()
 }
 
 # Create script in home folder
-generate-file > "${DESTDIR}"/.snckrc
+generate-file > "${DESTDIR}/.snckrc"
 
-# end-of-file: ~/.snckrc
+# end-of-file: home_snckrc.sh

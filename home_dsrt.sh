@@ -14,6 +14,11 @@ if [ -z "${DESTDIR}" ]; then
     DESTDIR=${HOME}
 fi
 
+# Make sure destination folder has been created
+if [ ! -d "${DESTDIR}" ]; then
+    mkdir -p "${DESTDIR}"
+fi
+
 # Make a backup of existing file
 if [ -f "${DESTDIR}"/.dsrtrc ]; then
     cp "${DESTDIR}"/.dsrtrc "${DESTDIR}"/.dsrtrc.bak

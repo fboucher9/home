@@ -1,12 +1,7 @@
-" See LICENSE for license details
-
 " Module: ~/.vimrc
 "
 " Description:
 "   vim main configuration file
-"
-
-" --- Generic options ---
 
 " Enable vim specific and vi non-compatible features
 set nocompatible
@@ -171,8 +166,9 @@ set ttimeoutlen=100
 " Display special characters like tab and trailing space
 set list
 
-" Use spaces but with a special highlighting
-set listchars=tab:\ \ ,trail:\ 
+" Make tabs and trailing spaces visible
+" set listchars=tab:>-,trail:.
+exec "set listchars=tab:\u22c5\u22c5,trail:\u22c5"
 
 " Setup English Dictionary
 set dictionary=~/.vim/dict/web2
@@ -180,12 +176,13 @@ set dictionary=~/.vim/dict/web2
 " include paths...
 set path=.,/usr/local/include,/usr/include
 
-
 " Configuration of diff mode
 " Fill empty lines with a 'fill' character, do not show the fold column
 set diffopt=filler,foldcolumn:0,vertical
+
+" Configure fill characters for split, fold and diff
 " set fillchars=stlnc:_,stl:_,vert:\|,fold:.,diff:.
-exec "set fillchars=stlnc:\u2015,stl:\u2015,vert:\u2502,fold:\\ ,diff:\\ "
+exec "set fillchars=stlnc:\u2015,stl:\u2015,vert:\u2502,fold:\u22c5,diff:\u22c5"
 
 " Do not display introduction when opening no files
 set shortmess=atToOsI
@@ -197,15 +194,7 @@ set guicursor=n-v-c:block,o:hor50,i-ci:hor5,r-cr:hor30,sm:block
 set shell=sh
 
 " Setup grepprg
-if executable('ag')
-    if executable('ag_vim')
-        set grepprg=ag_vim
-    else
-        set grepprg=ag\ -i\ --nogroup\ --column\ $*
-    endif
-else
-    set grepprg=grep\ -n\ -i\ -r\ --exclude-dir=.git\ --exclude=tags\ --exclude=_obj*\ $*\ .
-endif
+set grepprg=grep\ -n\ -i\ -r\ --exclude-dir=.git\ --exclude=tags\ --exclude=_obj*\ $*\ .
 
 " Configuration of netrw plugin
 let g:netrw_banner=0

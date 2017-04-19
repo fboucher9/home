@@ -3,7 +3,7 @@
 # See LICENSE for license details
 
 #
-# Module: ~/bin/g
+# Module: home_grep.sh
 #
 # Description:
 #       Recursive grep and view results using vim quickfix list.
@@ -20,8 +20,13 @@ if [ -z "${DESTDIR}" ]; then
 fi
 
 # Make sure bin folder has been created
-if [ ! -d "${DESTDIR}"/bin ]; then
-    mkdir "${DESTDIR}"/bin
+if [ ! -d "${DESTDIR}/bin" ]; then
+    mkdir -p "${DESTDIR}/bin"
+fi
+
+# Backup of existing file
+if [ -f "${DESTDIR}/bin/g" ]; then
+    cp "${DESTDIR}/bin/g" "${DESTDIR}/bin/g.bak"
 fi
 
 (
@@ -37,9 +42,9 @@ echo 'exec vim -q <( \
         --exclude='\''_obj*'\'' \
         "${@}" \
         . )'
-) > "${DESTDIR}"/bin/g
+) > "${DESTDIR}/bin/g"
 
 # Make the script executable
-chmod +x "${DESTDIR}"/bin/g
+chmod +x "${DESTDIR}/bin/g"
 
-# end-of-file: ~/bin/g
+# end-of-file: home_grep.sh

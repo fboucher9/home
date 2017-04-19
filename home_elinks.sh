@@ -3,7 +3,7 @@
 # See LICENSE for license details
 
 #
-# Module: ~/.elinks/elinks.conf
+# Module: home_elinks.sh
 #
 # Description:
 #       Configuration of elinks web browser.
@@ -15,8 +15,13 @@ if [ -z "${DESTDIR}" ]; then
 fi
 
 # Make sure destination folder is created
-if [ ! -d "${DESTDIR}"/.elinks ]; then
-    mkdir "${DESTDIR}"/.elinks
+if [ ! -d "${DESTDIR}/.elinks" ]; then
+    mkdir -p "${DESTDIR}/.elinks"
+fi
+
+# Backup of existing file
+if [ -f "${DESTDIR}/.elinks/elinks.conf" ]; then
+    cp "${DESTDIR}/.elinks/elinks.conf" "${DESTDIR}/.elinks/elinks.conf.bak"
 fi
 
 # Create file in .elinks folder
@@ -37,6 +42,6 @@ fi
     echo 'set ui.show_status_bar = 0'
     echo 'set ui.show_title_bar = 0'
     echo 'set ui.tabs.show_bar = 1'
-) > "${DESTDIR}"/.elinks/elinks.conf
+) > "${DESTDIR}/.elinks/elinks.conf"
 
-# end-of-file: ~/.elinks/elinks.conf
+# end-of-file: home_elinks.sh

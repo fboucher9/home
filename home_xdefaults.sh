@@ -3,7 +3,7 @@
 # See LICENSE for license details
 
 #
-# Module: ~/.Xdefaults
+# Module: home_xdefaults.sh
 #
 # Description:
 #       Configuration of X11 utilities such as xterm and xclock
@@ -14,9 +14,14 @@ if [ -z "${DESTDIR}" ]; then
     DESTDIR=${HOME}
 fi
 
+# Make sure folder has been created
+if [ ! -d "${DESTDIR}" ]; then
+    mkdir -p "${DESTDIR}"
+fi
+
 # Backup existing file
-if [ -f "${DESTDIR}"/.Xdefaults ]; then
-    cp "${DESTDIR}"/.Xdefaults "${DESTDIR}"/.Xdefaults.bak
+if [ -f "${DESTDIR}/.Xdefaults" ]; then
+    cp "${DESTDIR}/.Xdefaults" "${DESTDIR}/.Xdefaults.bak"
 fi
 
 #
@@ -88,7 +93,6 @@ function generate-file ()
 }
 
 # Create the file in the home folder
-echo "Install ${DESTDIR}/.Xdefaults"
-generate-file > "${DESTDIR}"/.Xdefaults
+generate-file > "${DESTDIR}/.Xdefaults"
 
-# end-of-file: ~/.Xdefaults
+# end-of-file: home_xdefaults.sh

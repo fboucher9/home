@@ -3,7 +3,7 @@
 # See LICENSE for license details
 
 #
-# Module: ~/bin/manpager
+# Module: home_manpager.sh
 #
 # Description:
 #       Custom pager for man command.
@@ -15,17 +15,22 @@ if [ -z "${DESTDIR}" ]; then
 fi
 
 # Make sure bin folder has been created
-if [ ! -d "${DESTDIR}"/bin ]; then
-    mkdir "${DESTDIR}"/bin
+if [ ! -d "${DESTDIR}/bin" ]; then
+    mkdir -p "${DESTDIR}/bin"
+fi
+
+# Backup of existing file
+if [ -f "${DESTDIR}/bin/manpager" ]; then
+    cp "${DESTDIR}/bin/manpager" "${DESTDIR}/bin/manpager.bak"
 fi
 
 # Create the script in the bin folder
 (
 echo '#!/bin/bash'
 echo 'col -b -x | exec vim +"setf man" -'
-) > "${DESTDIR}"/bin/manpager
+) > "${DESTDIR}/bin/manpager"
 
 # Make the script executable
-chmod +x "${DESTDIR}"/bin/manpager
+chmod +x "${DESTDIR}/bin/manpager"
 
-# end-of-file: ~/bin/manpager
+# end-of-file: home_manpager.sh

@@ -3,7 +3,7 @@
 # See LICENSE for license details
 
 #
-# Module: ~/.lnchrc
+# Module: home_lnch.sh
 #
 # Description:
 #       Startup script for lnch window manager.
@@ -14,9 +14,14 @@ if [ -z "${DESTDIR}" ]; then
     DESTDIR=${HOME}
 fi
 
+# Make sure destination folder has been created
+if [ ! -d "${DESTDIR}" ]; then
+    mkdir -p "${DESTDIR}"
+fi
+
 # Make a backup of existing script
-if [ -f "${DESTDIR}"/.lnchrc ]; then
-    cp "${DESTDIR}"/.lnchrc "${DESTDIR}"/.lnchrc.bak
+if [ -f "${DESTDIR}/.lnchrc" ]; then
+    cp "${DESTDIR}/.lnchrc" "${DESTDIR}/.lnchrc.bak"
 fi
 
 #
@@ -48,9 +53,9 @@ function generate-script ()
 }
 
 # Create script in home folder
-generate-script > "${DESTDIR}"/.lnchrc
+generate-script > "${DESTDIR}/.lnchrc"
 
 # Make the script executable
-chmod +x "${DESTDIR}"/.lnchrc
+chmod +x "${DESTDIR}/.lnchrc"
 
-# end-of-file: ~/.lnchrc
+# end-of-file: home_lnch.sh

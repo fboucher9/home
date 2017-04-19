@@ -3,7 +3,7 @@
 # See LICENSE for license details
 
 #
-# Module: ~/bin/v
+# Module: home_v.sh
 #
 # Description:
 #       Launch favorite editor.
@@ -18,17 +18,22 @@ if [ -z "${DESTDIR}" ]; then
 fi
 
 # Make sure bin folder has been created
-if [ ! -d "${DESTDIR}"/bin ]; then
-    mkdir "${DESTDIR}"/bin
+if [ ! -d "${DESTDIR}/bin" ]; then
+    mkdir -p "${DESTDIR}/bin"
+fi
+
+# Backup of existing file
+if [ -f "${DESTDIR}/bin/v" ]; then
+    cp "${DESTDIR}/bin/v" "${DESTDIR}/bin/v.bak"
 fi
 
 # Create the script in the bin folder
 (
 echo '#!/bin/bash'
 echo 'exec ${EDITOR} "${@}"'
-) > "${DESTDIR}"/bin/v
+) > "${DESTDIR}/bin/v"
 
 # Make the script executable
-chmod +x "${DESTDIR}"/bin/v
+chmod +x "${DESTDIR}/bin/v"
 
-# end-of-file: ~/bin/v
+# end-of-file: home_v.sh
