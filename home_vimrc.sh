@@ -18,21 +18,14 @@ fi
 if [ ! -d "${DESTDIR}/.vim" ]; then
     mkdir -p "${DESTDIR}/.vim"
 fi
-if [ ! -d "${DESTDIR}/.vim/colors" ]; then
-    mkdir -p "${DESTDIR}/.vim/colors"
-fi
 
 # Backup of existing file
-if [ -f "${DESTDIR}/.vim/_vimrc" ]; then
-    cp "${DESTDIR}/.vim/_vimrc" "${DESTDIR}/.vim/_vimrc.bak"
-fi
-if [ -f "${DESTDIR}/.vim/colors/feed.vim" ]; then
-    cp "${DESTDIR}/.vim/colors/feed.vim" "${DESTDIR}/.vim/colors/feed.vim.bak"
+if [ -d "${DESTDIR}/.vim" ]; then
+    cp -r "${DESTDIR}/.vim" "/tmp/"
 fi
 
 # Copy file(s)
-cp vim/_vimrc "${DESTDIR}/.vim/_vimrc"
-cp vim/colors/feed.vim "${DESTDIR}/.vim/colors/feed.vim"
+cp -r vim/* "${DESTDIR}/.vim/"
 
 # Create symbolic link
 (
