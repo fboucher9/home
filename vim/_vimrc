@@ -1,3 +1,5 @@
+" See LICENSE for license details
+
 " Module: ~/.vimrc
 "
 " Description:
@@ -70,7 +72,7 @@ set backspace=indent,eol,start
 set history=500
 
 " Display of cursor position in status bar
-set noruler
+" set noruler
 
 " Display of incomplete commands in status bar
 " set showcmd
@@ -141,6 +143,9 @@ set showtabline=0
 " Highlight of cursor column
 " set nocursorcolumn
 
+" Highlight of textwidth
+set colorcolumn=80
+
 " Disable jump to matching brace
 " set noshowmatch
 
@@ -196,6 +201,9 @@ set shell=sh
 " Setup grepprg
 set grepprg=grep\ -n\ -i\ -r\ --exclude-dir=.git\ --exclude=tags\ --exclude=_obj*\ $*\ .
 
+" Disable netrw plugin
+let loaded_netrwPlugin = 1
+
 " Configuration of netrw plugin
 let g:netrw_banner=0
 
@@ -249,3 +257,5 @@ endif
 if (0 == argc())
     setlocal buftype=nofile
 endif
+
+" end-of-file: ~/.vimrc
