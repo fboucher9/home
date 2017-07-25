@@ -10,6 +10,8 @@
 HOME_FEATURES := \
     home_bashrc \
     home_bg \
+    home_bs \
+    home_xc \
     home_ctags \
     home_dsrt \
     home_elinks \
@@ -42,6 +44,18 @@ home_bg: $(HOME_DST)/bin/_
 
 $(HOME_DST)/bin/_: $(HOME_SRC)/home_bg.sh
 	$(HOME_INSTALL)
+
+.PHONY: home_bs
+home_bs: $(HOME_DST)/bin/bs
+
+$(HOME_DST)/bin/bs: $(HOME_SRC)/home_bs.c
+	$(CC) -o $(HOME_DST)/bin/bs $(HOME_SRC)/home_bs.c
+
+.PHONY: home_xc
+home_xc: $(HOME_DST)/bin/xc
+
+$(HOME_DST)/bin/xc: $(HOME_SRC)/home_xc.c
+	$(CC) -o $(HOME_DST)/bin/xc $(HOME_SRC)/home_xc.c
 
 .PHONY: home_ctags
 home_ctags: $(HOME_DST)/.ctags
